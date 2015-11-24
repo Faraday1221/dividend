@@ -1,0 +1,30 @@
+## References
+- [GitHub Collaboration](https://help.github.com/categories/collaborating/)
+- [Useful Commands](http://zackperdue.com/tutorials/super-useful-need-to-know-git-commands)
+- [GitHub Youtube](https://youtu.be/WxMFZncm12s?list=PLg7s6cbtAD15G8lNyoaYDuKZSKyJrgwB-)
+
+### The Basics
+*Initialize the Repository*
+git init
+git init [directory name] _if the directory doesnt already exist_
+
+*Commit Changes*
+_this is typically thought of as the staging command, the staged files are then added with
+the add command along with comments. As you get more experienced with git the commits
+will become more cohesive and planned (such that they make sense as a group and help
+make the history clear and cohesive)._
+git commit
+git status
+git add -m [comment]
+
+*Difference between current and committed files*
+_A useful way to see how content has changed. This is also useful to examine the staging 
+area. i.e. How files differ from your staging area_
+git diff
+git diff --staged
+
+_it is helpful to point out that files without a previous commit (i.e. new files) will 
+show up with 'git status' but not 'git diff'. This is because 'git diff' tracks differences
+between commits. Once the file is staged via 'git add -A', or a similar add command, the 
+differences can be seen with 'git diff --staged'. Once the file has been staged git diff
+will show changes in the file._
