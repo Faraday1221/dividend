@@ -146,3 +146,5 @@ the following (just be sure to check back out when your finished with detached H
 _to throw away changes - i.e. write the files contents from the last commit_
 
 >git checkout --[filename]
+
+This line is clearly wrong and sucks
