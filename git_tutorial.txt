@@ -2,6 +2,7 @@
 - [GitHub Collaboration](https://help.github.com/categories/collaborating/)
 - [Useful Commands](http://zackperdue.com/tutorials/super-useful-need-to-know-git-commands)
 - [GitHub Youtube](https://youtu.be/WxMFZncm12s?list=PLg7s6cbtAD15G8lNyoaYDuKZSKyJrgwB-)
+- [Simple Guide](http://rogerdudler.github.io/git-guide/)
 
 ### The Basics
 *Initialize the Repository*
@@ -70,7 +71,7 @@ powerful and can be combined in many different ways, these are all basic example
 >git rm [filename]
 
 _note if the file has already been deleted 'git rm [filename]' will stage the deletion 
-commit which is then tracked in git. This is inconvienant for a large number of files,
+commit which is then tracked in git. This is inconvenient for a large number of files,
 in which case we could use the following to update delete commits in a batch. Note that the
 "." is calling out the current directory_
 
@@ -81,4 +82,67 @@ git but keeps the file in the local directory_
 
 >git rm --cached [filename]
 
+_note that deletions with the GUI is very simple... no explanation needed_
 
+*Moving Files*
+_this is something version control has always struggled with... renaming and moving are the
+same thing_
+
+>git mv [filename] [new path/filename]
+
+_this can also be accomplished by chaining together a rm and an add command. Alternatively
+this could be done with a simple add -A command_
+
+>git add -A
+
+_if we want to track commit history across a move we will need the following... note that
+the regular log will not track changes across a move_
+
+>git log -M --follow
+
+_git follows files by applying a similarity index, set at 50% by default, this can be 
+reset but it doesn't need to be changed - typically_
+
+*Ignore*
+> touch .gitignore
+> git add .gitignore
+> git commit -m "preparing to ignore files"
+
+_to ignore files we simply add them to the .gitignore file e.g. by opening .gitignore
+with vim and adding the file name, for example: .DS_Store  
+we can use wildcards like *.txt to ignore types of files or to designate directories
+use an ending slash tmp/_
+ 
+_it is also helpful to keep in mind that ignore applies to sub directories, although
+ignore files in sub directories take precedence over the parent ignore specifications.
+The ignore file can also be commented after using a #.  The ! can also be used to designate
+files that cannot be ignored._
+
+>git ls-files --others --ignored --exclude-standard
+_this prints a list of files that github is ignoring (could we also just use the cat .gitignore)?_
+
+*Branches*
+_Master Branch is essentially Production. We should branch off of this for development
+to create or delete a branch we can use either of the following_
+
+> git branch [branch name]
+> git branch -d [branch name]
+
+*Checkout*
+_Checkout is used to change branches, we can see which branch we are on by running either._ 
+
+>git branch
+>git status
+
+_I've heard that branches can be thought of as "Save As" or "Virtual Directories", Checkout
+allows you to move between these virtual directories. Your internal dialogue could almost be
+"change to directory [name]" then implemented as git checkout [name]_  
+
+_checkout also lets you see what your files look like at any spesific commit. to do this run
+the following (just be sure to check back out when your finished with detached HEAD state)_
+
+>git checkout [commit reference]
+
+_to throw away changes - i.e. write the files contents from the last commit_
+
+>git checkout --[filename]
