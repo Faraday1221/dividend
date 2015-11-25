@@ -145,6 +145,8 @@ the following (just be sure to check back out when your finished with detached H
 
 _to throw away changes - i.e. write the files contents from the last commit_
 
->git checkout --[filename]
+>git checkout -- [filename]
 
-This line is clearly wrong and sucks
+_we can also checkout a new branch and move to it in a single command_
+
+>git checkout -b [branch name]
