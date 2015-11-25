@@ -27,7 +27,7 @@ area. i.e. How files differ from your local copy, staging area and committed cop
 >git diff --staged
 >git diff HEAD
 
-_it is helpful to point out that files without a previous commit (i.e. new files) will 
+it is helpful to point out that files without a previous commit (i.e. new files) will 
 show up with 'git status' but not 'git diff'. This is because 'git diff' tracks differences
 between commits. Once the file is staged via 'git add -A', or a similar add command, the 
 differences can be seen with 'git diff --staged'. Once the file has been staged git diff
@@ -39,15 +39,16 @@ how git stages files and the flow into the stage and capture process.
 
 To compare all changes the git diff HEAD command will show the difference between the 
 local copy and the last committed copy, effectively skipping over what has been staged
-and not staged._
+and not staged.
 
 >git diff --color-words
 >git diff --word-diff
 
-_both of these make reading the changes targeted, rather than printing the entire line
+both of these make reading the changes targeted, rather than printing the entire line
 that has changed.  
 
-to suppress more of the output and only show the number of files changed use git diff --stat_
+to suppress more of the output and only show the number of files changed use git diff --stat
+
 >git diff --stat
 
 *Viewing the History of Commits with Log*
@@ -59,12 +60,14 @@ view of the output and what files were involved in the commit respectively._
 >git log --stat
 
 >git log --patch
+
 _this will show what content changed between commits, i.e. the diff between subsequent commits. 
 Keep in mind these flags are not exclusive e.g._
 >git log --stat --online
 
-_if we want to view a lot of log information we could try the following graph... log is
-powerful and can be combined in many different ways, these are all basic examples._
+if we want to view a lot of log information we could try the following graph... log is
+powerful and can be combined in many different ways, these are all basic examples.
+
 >git log --graph --all --decorate --oneline
 
 *Deleting Files*
@@ -77,8 +80,8 @@ in which case we could use the following to update delete commits in a batch. No
 
 >git add -u .
 
-_you can also keep git from tracking files by using the command below, this removes it from
-git but keeps the file in the local directory_
+you can also keep git from tracking files by using the command below, this removes it from
+git but keeps the file in the local directory
 
 >git rm --cached [filename]
 
@@ -150,3 +153,40 @@ _to throw away changes - i.e. write the files contents from the last commit_
 _we can also checkout a new branch and move to it in a single command_
 
 >git checkout -b [branch name]
+
+*Merge*
+_go the branch you want to merge to, then type the command below. This will bring in the entire
+commit history_
+
+> git checkout [branch to merge into]
+> git merge [path/file]
+
+_note that if you want to abandon a merge because you cannot deconflict it on the spot
+you can always abort the merge, which cleans up your status, with the following_
+
+>git merge --abort
+
+If you dont want to bring the entire commit history over in the merge you can use
+
+>git merge --squash [target branch]
+
+Once you've completed a merge you don't need the branch labeler name anymore, 
+this will bring the the commit history over 
+
+>git branch -d
+
+*Network*
+_when working in a local repository we need to specify where we will be sending our work,
+this is done with the following_
+
+>git remote add [name of destination] [location of destination e.g. url]
+>git remote add origin http://github.com/Faraday1221/new_repo
+
+_we can change the url as follows_
+
+>git remote set-url [name of destination] [location of new destination]
+
+_to delete a remote or to see a feed of all remotes try these:_
+>git remote rm [name]
+>git remote -v
+
