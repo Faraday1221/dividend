@@ -28,7 +28,3 @@ show up with 'git status' but not 'git diff'. This is because 'git diff' tracks 
 between commits. Once the file is staged via 'git add -A', or a similar add command, the 
 differences can be seen with 'git diff --staged'. Once the file has been staged git diff
 will show changes in the file._
-
-Change the file... here
-
-Then hit add -A, maybe I'm jumping over the commit stage?
