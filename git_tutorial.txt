@@ -5,26 +5,80 @@
 
 ### The Basics
 *Initialize the Repository*
-git init
-git init [directory name] _if the directory doesnt already exist_
+>git init
+>git init [directory name] 
+_if the directory doesn't already exist_
 
 *Commit Changes*
 _this is typically thought of as the staging command, the staged files are then added with
 the add command along with comments. As you get more experienced with git the commits
 will become more cohesive and planned (such that they make sense as a group and help
 make the history clear and cohesive)._
-git commit
-git status
-git add -m [comment]
+
+>git status
+>git add -A
+>git commit -m [comment]
 
 *Difference between current and committed files*
 _A useful way to see how content has changed. This is also useful to examine the staging 
-area. i.e. How files differ from your staging area_
-git diff
-git diff --staged
+area. i.e. How files differ from your local copy, staging area and committed copy._
+>git diff
+>git diff --staged
+>git diff HEAD
 
 _it is helpful to point out that files without a previous commit (i.e. new files) will 
 show up with 'git status' but not 'git diff'. This is because 'git diff' tracks differences
 between commits. Once the file is staged via 'git add -A', or a similar add command, the 
 differences can be seen with 'git diff --staged'. Once the file has been staged git diff
-will show changes in the file._
+will show changes in the file.  
+
+In short git diff is the difference between a file saved and a file staged; git diff --staged
+is the difference between a staged file and the last committed file. This kind of shows 
+how git stages files and the flow into the stage and capture process.  
+
+To compare all changes the git diff HEAD command will show the difference between the 
+local copy and the last committed copy, effectively skipping over what has been staged
+and not staged._
+
+>git diff --color-words
+>git diff --word-diff
+
+_both of these make reading the changes targeted, rather than printing the entire line
+that has changed.  
+
+to suppress more of the output and only show the number of files changed use git diff --stat_
+>git diff --stat
+
+*Viewing the History of Commits with Log*
+>git log
+_this shows all the commits that have occurred within the repo, since this will often be 
+too much information we can filter the log with some option flags. These flags show a condensed
+view of the output and what files were involved in the commit respectively._
+>git log --oneline
+>git log --stat
+
+>git log --patch
+_this will show what content changed between commits, i.e. the diff between subsequent commits. 
+Keep in mind these flags are not exclusive e.g._
+>git log --stat --online
+
+_if we want to view a lot of log information we could try the following graph... log is
+powerful and can be combined in many different ways, these are all basic examples._
+>git log --graph --all --decorate --oneline
+
+*Deleting Files*
+>git rm [filename]
+
+_note if the file has already been deleted 'git rm [filename]' will stage the deletion 
+commit which is then tracked in git. This is inconvienant for a large number of files,
+in which case we could use the following to update delete commits in a batch. Note that the
+"." is calling out the current directory_
+
+>git add -u .
+
+_you can also keep git from tracking files by using the command below, this removes it from
+git but keeps the file in the local directory_
+
+>git rm --cached [filename]
+
+
