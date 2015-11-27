@@ -190,3 +190,18 @@ _to delete a remote or to see a feed of all remotes try these:_
 >git remote rm [name]
 >git remote -v
 
+*Fetch, Push and Pull*
+_we can grab our files from a repository or branch with fetch (I think the branch -r command
+is used to read in those files into the appropriate branches on the local repo)_
+
+>git fetch origin
+>git branch -r
+
+_pull is very similar to fetch, a pull will grab files in the repo and merge them 
+(as far as I can tell the only difference is that pull is a fetch with a merge)_
+
+>git pull origin
+
+_to send information back to github.com we use the push operation_
+
+>git push origin
